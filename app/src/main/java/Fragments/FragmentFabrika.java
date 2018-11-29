@@ -4,34 +4,28 @@ import android.support.v4.app.Fragment;
 
 public class FragmentFabrika implements IFragmentFabrikasi {
     @Override
-    public Fragment getInstance(Enum fragmentAdi){
+    public Fragment getInstance(Enum fragmentAdi) {
 
 
-        Fragment fragment=new FragmentAnaekran();//default deger.
-        switch ((F_Menu_Enum)fragmentAdi){
+        Fragment fragment;
+        switch ((F_Menu_Enum) fragmentAdi) {
             case Anaekran:
-                fragment=new FragmentAnaekran();
+                fragment = new FragmentAnaekran();
                 break;
-            case EndeksTablosu:
-                fragment=new FragmentEndeksTablosu();
+            case EKLE_NOT:
+                fragment = new FragmentNotEkle();
                 break;
-            case SayacAyarlari:
-                fragment=new FragmentSayacAyarlari();
+            case EKLE_KATEGORI:
+                fragment = new FragmentKategoriEKle();
                 break;
-            case SayacEndeksOku:
-                fragment=new FragmentSayacEndeksOku();
+            case SIL_NOT:
+                fragment = new FragmentNotSil();
                 break;
-            case SayacYukProfiliOku:
-                fragment=new FragmentSayacYukProfiliOku();
+            case SIL_KATEGORI:
+                fragment = new FragmentKategoriSİl();
                 break;
-            case SistemAyarlari:
-                fragment=new FragmentSistemAyarlari();
-                break;
-            case Yardim:
-                fragment=new FragmentYardim();
-                break;
-            case YukProfiliTablosu:
-                fragment=new FragmentYukProfiliTablosu();
+            default:
+                fragment = new FragmentAnaekran();
                 break;
         }
         return fragment;
