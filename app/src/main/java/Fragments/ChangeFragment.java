@@ -5,8 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
-import com.example.hasan.bluskyproje.IFragmentFabrikasi;
-import com.example.hasan.bluskyproje.R;
+import com.example.hasan.category_note_keep.R;
 
 public class ChangeFragment {
     Context cxt;
