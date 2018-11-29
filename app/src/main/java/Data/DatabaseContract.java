@@ -27,7 +27,7 @@ public class DatabaseContract {
         public static final String COLUMN_KATEGORI_ID = "kategoriID";
     }
 
-    public static final class Kategoriler implements BaseColumns {
+    public static final class KategorilerEntry implements BaseColumns {
         public static final String TABLE_NAME = "kategori";
 
         //TABLOYA AIT URI
