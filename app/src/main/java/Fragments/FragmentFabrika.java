@@ -16,13 +16,13 @@ public class FragmentFabrika implements IFragmentFabrikasi {
                 fragment = new FragmentNotEkle();
                 break;
             case EKLE_KATEGORI:
-                fragment = new FragmentKategoriEKle();
+                fragment = new FragmentKategoriEkle();
                 break;
             case SIL_NOT:
                 fragment = new FragmentNotSil();
                 break;
             case SIL_KATEGORI:
-                fragment = new FragmentKategoriSİl();
+                fragment = new FragmentKategoriSil();
                 break;
             default:
                 fragment = new FragmentAnaekran();

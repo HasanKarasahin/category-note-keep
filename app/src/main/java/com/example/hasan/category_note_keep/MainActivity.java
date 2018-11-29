@@ -19,7 +19,6 @@ import Fragments.F_Menu_Enum;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Frag
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
