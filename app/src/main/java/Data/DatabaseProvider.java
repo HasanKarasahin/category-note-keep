@@ -1,6 +1,5 @@
 package Data;
 
-import android.content.BroadcastReceiver;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
