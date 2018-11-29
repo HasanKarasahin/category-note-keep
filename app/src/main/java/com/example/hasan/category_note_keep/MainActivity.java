@@ -15,10 +15,13 @@ import android.view.MenuItem;
 
 import Fragments.ChangeFragment;
 import Fragments.F_Menu_Enum;
+import Fragments.FragmentFabrika;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    FragmentFabrika fragmentFabrika;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        fragmentFabrika = new FragmentFabrika();
+        if (savedInstanceState == null) {
+            //anaEkranKontrol = true;
+            new ChangeFragment(this).change(F_Menu_Enum.Anaekran, fragmentFabrika);
+        }
+
     }
 
     @Override
@@ -106,9 +117,10 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
 
-        changeFragment.change(fragmentEnum,frag);
+        changeFragment.change(fragmentEnum, fragmentFabrika);
+        setTitle(item.getTitle());
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
