@@ -19,6 +19,8 @@ import Fragments.F_Menu_Enum;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Frag
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,10 +105,9 @@ public class MainActivity extends AppCompatActivity
             default:
                 fragmentEnum = F_Menu_Enum.Anaekran;
                 break;
-
         }
 
-        //changeFragment.change(fragmentEnum,frag);
+        changeFragment.change(fragmentEnum,frag);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
