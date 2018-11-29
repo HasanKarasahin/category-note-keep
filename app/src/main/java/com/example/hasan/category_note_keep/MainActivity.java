@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import Fragments.ChangeFragment;
+import Fragments.F_Menu_Enum;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -77,22 +80,33 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        ChangeFragment changeFragment = new ChangeFragment(this);
+        F_Menu_Enum fragmentEnum;
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        switch (item.getItemId()) {
+            case R.id.nav_anaekran:
+                fragmentEnum = F_Menu_Enum.Anaekran;
+                break;
+            case R.id.nav_ekle_not:
+                fragmentEnum = F_Menu_Enum.EKLE_NOT;
+                break;
+            case R.id.nav_ekle_kategori:
+                fragmentEnum = F_Menu_Enum.EKLE_KATEGORI;
+                break;
+            case R.id.nav_sil_not:
+                fragmentEnum = F_Menu_Enum.SIL_NOT;
+                break;
+            case R.id.nav_sil_kategori:
+                fragmentEnum = F_Menu_Enum.SIL_KATEGORI;
+                break;
+            default:
+                fragmentEnum = F_Menu_Enum.Anaekran;
+                break;
 
         }
+
+        //changeFragment.change(fragmentEnum,frag);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
