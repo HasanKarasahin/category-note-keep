@@ -64,7 +64,8 @@ public class ListeAdapter extends BaseAdapter {
             if (state) {
                 tvElemanAdi.setText(((KategoriModel) kategoriModels.get(position)).getKategoriAdi());
             } else {
-                tvElemanAdi.setText(((NotModel) kategoriModels.get(position)).getNotIcerik());
+                NotModel notModel = ((NotModel) kategoriModels.get(position));
+                tvElemanAdi.setText(notModel.getKategoriId() + " - " + notModel.getNotIcerik());
             }
         } else {
             tvElemanAdi.setText("Data Yok");
