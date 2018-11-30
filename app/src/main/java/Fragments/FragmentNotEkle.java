@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,7 +20,9 @@ import com.example.hasan.category_note_keep.R;
 
 import java.util.ArrayList;
 
+import Adapter.ListeAdapter;
 import Model.KategoriModel;
+import Model.NotModel;
 import data.DatabaseResult;
 
 public class FragmentNotEkle extends Fragment {
@@ -27,6 +30,7 @@ public class FragmentNotEkle extends Fragment {
     DatabaseResult dbResult;
     Spinner spKategoriler;
     ArrayList<KategoriModel> kategoriModels;
+    ListView lvNotListesi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class FragmentNotEkle extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         dbResult = new DatabaseResult(getContext());
+        lvNotListesi = view.findViewById(R.id.lvNotListesi);
 
         spKategoriler = view.findViewById(R.id.spKategoriler);
         spinnerDoldur();
@@ -69,11 +74,26 @@ public class FragmentNotEkle extends Fragment {
         }
     }
 
+    private void notlariListele() {
+        ArrayList<NotModel> notModels = dbResult.getTumNotlar();
+
+        if (notModels != null) {
+            listviewload(notModels);
+        } else {
+            Toast.makeText(getContext(), "Veri Okunamadı", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void spinnerDoldur() {
         kategoriModels = dbResult.getTumKategoriler();
         ArrayAdapter<KategoriModel> adapter = new ArrayAdapter<KategoriModel>(getContext(), R.layout.support_simple_spinner_dropdown_item, kategoriModels);
         spKategoriler.setAdapter(adapter);
         spKategoriler.setSelection(0);
+    }
+
+    private void listviewload(ArrayList<NotModel> notModels) {
+        //ListeAdapter adapter = new ListeAdapter();
+
     }
 
 
