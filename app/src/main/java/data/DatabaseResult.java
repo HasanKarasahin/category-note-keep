@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import Model.KategoriModel;
 
+import data.DatabaseContract.NotlarEntry;
+
 public class DatabaseResult {
 
     private Context context;
@@ -58,6 +60,23 @@ public class DatabaseResult {
             e.printStackTrace();
         }
 
+        return uri;
+    }
+
+    public Uri setNotEkle(String notIcerik, String kategoriId) {
+
+        Uri uri = null;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(NotlarEntry.COLUMN_NOT_ICERIK, notIcerik);
+            values.put(NotlarEntry.COLUMN_OLUSTURULMA_TARIHI, "28-11-18");
+            values.put(NotlarEntry.COLUMN_YAPILDI, 0);
+            values.put(NotlarEntry.COLUMN_KATEGORI_ID, kategoriId);
+
+            uri = context.getContentResolver().insert(NotlarEntry.CONTENT_URI, values);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return uri;
     }
 }
