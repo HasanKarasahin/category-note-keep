@@ -1,7 +1,7 @@
 package Fragments;
 
 public enum F_Menu_Enum {
-    Anaekran,
+    ANAEKRAN,
     EKLE_NOT,
     EKLE_KATEGORI,
     SIL_NOT,
