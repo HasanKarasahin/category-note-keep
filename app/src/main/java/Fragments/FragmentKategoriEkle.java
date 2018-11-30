@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -72,20 +71,16 @@ public class FragmentKategoriEkle extends Fragment {
 
                 tumListe += kategoriModel.get_id() + "-" + kategoriModel.getKategoriAdi() + "\n";
             }
-            Toast.makeText(getActivity(), "-" + tumListe, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), "Data Okunamadı", Toast.LENGTH_SHORT).show();
         }
         listviewload(kategoriModelList);
     }
 
-
     void listviewload(ArrayList<KategoriModel> KategoriModels) {
-        //ArrayAdapter<String> adapter=new ArrayAdapter<>()
         ListeAdapter adapter = new ListeAdapter(KategoriModels, getContext());
         lvKategoriListesi.setAdapter(adapter);
     }
-
 
     @Override
     public void onAttach(Context context) {
