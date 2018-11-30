@@ -57,10 +57,6 @@ public class DatabaseProvider extends ContentProvider {
                 cursor = builder.query(db, projection, selection, selectionArgs, null, null, null);
                 break;
             case URICODE_KATEGORILER:
-                //String[] projection_kategoriler = {"_id", "kategori"};
-                //String selection = "_id = ?";
-                //String[] selectionArgs = {"1", "2", "3"};
-
                 cursor = db.query(KategorilerEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
                 break;
             default:

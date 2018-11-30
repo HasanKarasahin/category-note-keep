@@ -26,6 +26,8 @@ import data.DatabaseResult;
 
 public class FragmentKategoriEkle extends Fragment {
 
+    DatabaseResult dbResult;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,9 @@ public class FragmentKategoriEkle extends Fragment {
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button btnKategoriEkle = view.findViewById(R.id.btnKategoriEkle);
+
+        dbResult = new DatabaseResult(getContext());
+
         btnKategoriEkle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,8 +68,7 @@ public class FragmentKategoriEkle extends Fragment {
 
     void kategorileriGoster() {
 
-        Cursor cursor = getContext().getContentResolver().query(DatabaseContract.KategorilerEntry.CONTENT_URI, null, null, null, null);
-        ArrayList<KategoriModel> kategoriModelList = new DatabaseResult().tumKategoriler(cursor);
+        ArrayList<KategoriModel> kategoriModelList = dbResult.getTumKategoriler();
 
         if (kategoriModelList != null) {
             String tumListe = "";
@@ -73,12 +77,10 @@ public class FragmentKategoriEkle extends Fragment {
 
                 tumListe += kategoriModel.get_id() + "-" + kategoriModel.getKategoriAdi() + "\n";
             }
-
             Toast.makeText(getActivity(), "-" + tumListe, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), "Data Okunamadı", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
