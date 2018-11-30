@@ -61,6 +61,7 @@ public class FragmentNotEkle extends Fragment {
                 notEkle(notIcerik, kategoriId);
             }
         });
+        notlariListele();
     }
 
 
@@ -72,6 +73,7 @@ public class FragmentNotEkle extends Fragment {
         } else {
             Toast.makeText(getContext(), "Not Eklenemedi", Toast.LENGTH_SHORT).show();
         }
+        notlariListele();
     }
 
     private void notlariListele() {
@@ -92,8 +94,8 @@ public class FragmentNotEkle extends Fragment {
     }
 
     private void listviewload(ArrayList<NotModel> notModels) {
-        //ListeAdapter adapter = new ListeAdapter();
-
+        ListeAdapter adapter = new ListeAdapter(notModels, getContext());
+        lvNotListesi.setAdapter(adapter);
     }
 
 
