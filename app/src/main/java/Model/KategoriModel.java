@@ -24,4 +24,9 @@ public class KategoriModel {
     public void setKategoriAdi(String kategoriAdi) {
         this.kategoriAdi = kategoriAdi;
     }
+    
+    @Override
+    public String toString() {
+        return getKategoriAdi();
+    }
 }
