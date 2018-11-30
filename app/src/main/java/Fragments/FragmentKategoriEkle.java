@@ -17,8 +17,12 @@ import android.widget.Toast;
 
 import com.example.hasan.category_note_keep.R;
 
+import java.util.ArrayList;
+
+import Model.KategoriModel;
 import data.DatabaseContract;
 import data.DatabaseProvider;
+import data.DatabaseResult;
 
 public class FragmentKategoriEkle extends Fragment {
 
@@ -60,15 +64,20 @@ public class FragmentKategoriEkle extends Fragment {
     void kategorileriGoster() {
 
         Cursor cursor = getContext().getContentResolver().query(DatabaseContract.KategorilerEntry.CONTENT_URI, null, null, null, null);
+        ArrayList<KategoriModel> kategoriModelList = new DatabaseResult().tumKategoriler(cursor);
 
-        String tumKategoriler = "";
-        while (cursor.moveToNext()) {
-            String id = cursor.getString(0);
-            String KategoriAdi = cursor.getString(1);
-            tumKategoriler += " id : " + id + " kategori : " + KategoriAdi + "\n";
+        if (kategoriModelList != null) {
+            String tumListe = "";
+            for (KategoriModel kategoriModel :
+                    kategoriModelList) {
+
+                tumListe += kategoriModel.get_id() + "-" + kategoriModel.getKategoriAdi() + "\n";
+            }
+
+            Toast.makeText(getActivity(), "-" + tumListe, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), "Data Okunamadı", Toast.LENGTH_SHORT).show();
         }
-
-        Toast.makeText(getActivity(), "" + tumKategoriler, Toast.LENGTH_SHORT).show();
 
     }
 
