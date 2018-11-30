@@ -19,10 +19,23 @@ public class ListeAdapter extends BaseAdapter {
 
     ArrayList<?> kategoriModels;
     Context context;
+    boolean state;
+    boolean dataVar = false;
 
     public ListeAdapter(ArrayList<?> kategoriModels, Context context) {
         this.kategoriModels = kategoriModels;
         this.context = context;
+
+        if (kategoriModels.size() > 0) {
+            if (kategoriModels.get(0).getClass() == KategoriModel.class) {
+                state = true;
+            } else if (kategoriModels.get(0).getClass() == NotModel.class) {
+                state = false;
+            }
+            dataVar = true;
+        } else {
+            dataVar = false;
+        }
     }
 
     @Override
@@ -46,10 +59,15 @@ public class ListeAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.liste_adapter_satir, parent, false);
 
         TextView tvElemanAdi = v.findViewById(R.id.tvElemanAdi);
-        if (kategoriModels.get(0).getClass() == KategoriModel.class) {
-            tvElemanAdi.setText(((KategoriModel) kategoriModels.get(position)).getKategoriAdi());
-        } else if (kategoriModels.get(0).getClass() == NotModel.class) {
-            tvElemanAdi.setText(((NotModel) kategoriModels.get(position)).getNotIcerik());
+
+        if (dataVar) {
+            if (state) {
+                tvElemanAdi.setText(((KategoriModel) kategoriModels.get(position)).getKategoriAdi());
+            } else {
+                tvElemanAdi.setText(((NotModel) kategoriModels.get(position)).getNotIcerik());
+            }
+        } else {
+            tvElemanAdi.setText("Data Yok");
         }
 
         return v;
