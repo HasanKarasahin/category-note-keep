@@ -65,16 +65,10 @@ public class FragmentKategoriEkle extends Fragment {
         ArrayList<KategoriModel> kategoriModelList = dbResult.getTumKategoriler();
 
         if (kategoriModelList != null) {
-            String tumListe = "";
-            for (KategoriModel kategoriModel :
-                    kategoriModelList) {
-
-                tumListe += kategoriModel.get_id() + "-" + kategoriModel.getKategoriAdi() + "\n";
-            }
+            listviewload(kategoriModelList);
         } else {
             Toast.makeText(getActivity(), "Data Okunamadı", Toast.LENGTH_SHORT).show();
         }
-        listviewload(kategoriModelList);
     }
 
     void listviewload(ArrayList<KategoriModel> KategoriModels) {
