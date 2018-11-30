@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         fragmentFabrika = new FragmentFabrika();
         if (savedInstanceState == null) {
             //anaEkranKontrol = true;
-            new ChangeFragment(this).change(F_Menu_Enum.Anaekran, fragmentFabrika);
+            new ChangeFragment(this).change(F_Menu_Enum.ANAEKRAN, fragmentFabrika);
         }
 
     }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
 
         switch (item.getItemId()) {
             case R.id.nav_anaekran:
-                fragmentEnum = F_Menu_Enum.Anaekran;
+                fragmentEnum = F_Menu_Enum.ANAEKRAN;
                 break;
             case R.id.nav_ekle_not:
                 fragmentEnum = F_Menu_Enum.EKLE_NOT;
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
                 fragmentEnum = F_Menu_Enum.SIL_KATEGORI;
                 break;
             default:
-                fragmentEnum = F_Menu_Enum.Anaekran;
+                fragmentEnum = F_Menu_Enum.ANAEKRAN;
                 break;
         }
 

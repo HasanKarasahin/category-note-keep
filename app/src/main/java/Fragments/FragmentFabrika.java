@@ -9,7 +9,7 @@ public class FragmentFabrika implements IFragmentFabrikasi {
 
         Fragment fragment;
         switch ((F_Menu_Enum) fragmentAdi) {
-            case Anaekran:
+            case ANAEKRAN:
                 fragment = new FragmentAnaekran();
                 break;
             case EKLE_NOT:
