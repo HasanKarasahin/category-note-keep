@@ -36,7 +36,7 @@ public class FragmentNotEkle extends Fragment {
             public void onClick(View v) {
                 String kategoriId = "1";
 
-                notEkle(KategoriId);
+                //notEkle(KategoriId);
             }
         });
     }
