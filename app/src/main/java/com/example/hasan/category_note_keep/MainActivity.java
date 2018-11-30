@@ -1,5 +1,7 @@
 package com.example.hasan.category_note_keep;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,10 +14,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import Fragments.ChangeFragment;
 import Fragments.F_Menu_Enum;
 import Fragments.FragmentFabrika;
+import data.DatabaseContract.NotlarEntry;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -123,5 +127,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void notEkle() {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NotlarEntry.COLUMN_NOT_ICERIK, "yeni not");
+        contentValues.put(NotlarEntry.COLUMN_OLUSTURULMA_TARIHI, "28-11-18");
+        contentValues.put(NotlarEntry.COLUMN_YAPILDI, 1);
+        contentValues.put(NotlarEntry.COLUMN_KATEGORI_ID, 2);
+
+        Uri uri = getContentResolver().insert(NotlarEntry.CONTENT_URI, contentValues);
+        Toast.makeText(this, "Not eklendi : " + uri, Toast.LENGTH_SHORT).show();
     }
 }

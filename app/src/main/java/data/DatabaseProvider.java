@@ -1,4 +1,4 @@
-package Data;
+package data;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -12,8 +12,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import Data.DatabaseContract.NotlarEntry;
-import Data.DatabaseContract.KategorilerEntry;
+import data.DatabaseContract.NotlarEntry;
+import data.DatabaseContract.KategorilerEntry;
 
 public class DatabaseProvider extends ContentProvider {
 

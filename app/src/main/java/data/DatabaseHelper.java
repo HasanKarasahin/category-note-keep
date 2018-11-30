@@ -1,12 +1,12 @@
-package Data;
+package data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
 
-import Data.DatabaseContract.NotlarEntry;
-import Data.DatabaseContract.KategorilerEntry;
+import data.DatabaseContract.NotlarEntry;
+import data.DatabaseContract.KategorilerEntry;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

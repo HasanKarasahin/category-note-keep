@@ -21,8 +21,8 @@
         </activity>
 
         <provider
-            android:name="Data.DatabaseProvider"
-            android:authorities="com.example.hasan.category_note_keep.databaseprovider"
+            android:name="data.DatabaseProvider"
+            android:authorities="com.example.provider.databaseprovider"
             android:exported="false" />
 
     </application>
