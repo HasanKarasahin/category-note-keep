@@ -52,15 +52,15 @@ public class FragmentKategoriEkle extends Fragment {
                 kategoriEkle(kategoriAdi);
             }
         });
-        kategorileriGoster();
+        kategorileriListele();
     }
 
     void kategoriEkle(String kategoriAdi) {
         dbResult.setKategoriEkle(kategoriAdi);
-        kategorileriGoster();
+        kategorileriListele();
     }
 
-    void kategorileriGoster() {
+    void kategorileriListele() {
 
         ArrayList<KategoriModel> kategoriModelList = dbResult.getTumKategoriler();
 
