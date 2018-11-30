@@ -58,12 +58,7 @@ public class FragmentKategoriEkle extends Fragment {
 
     void kategoriEkle(String kategoriAdi) {
 
-        ContentValues values = new ContentValues();
-        values.put(DatabaseContract.KategorilerEntry.COLUMN_KATEGORI, kategoriAdi);
-        Uri uri = getContext().getContentResolver().insert(DatabaseContract.KategorilerEntry.CONTENT_URI, values);
 
-        Toast.makeText(getContext(), "-->" + uri, Toast.LENGTH_SHORT).show();
-        kategorileriGoster();
     }
 
     void kategorileriGoster() {

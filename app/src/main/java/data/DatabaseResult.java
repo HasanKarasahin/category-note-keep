@@ -1,8 +1,9 @@
 package data;
 
-import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 
 import java.util.ArrayList;
 
@@ -43,5 +44,20 @@ public class DatabaseResult {
         }
 
         return null;
+    }
+
+    public Uri setKategoriEkle(String kategoriAdi) {
+
+        Uri uri = null;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(DatabaseContract.KategorilerEntry.COLUMN_KATEGORI, kategoriAdi);
+            uri = context.getContentResolver().insert(DatabaseContract.KategorilerEntry.CONTENT_URI, values);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return uri;
     }
 }
