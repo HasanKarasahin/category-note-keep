@@ -94,7 +94,8 @@ public class DatabaseResult {
             int notIcerikC = cursor.getColumnIndex(NotlarEntry.COLUMN_NOT_ICERIK);
             int olusuturlmaTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_OLUSTURULMA_TARIHI);
             int yapildiC = cursor.getColumnIndex(NotlarEntry.COLUMN_YAPILDI);
-            int kategoriIdC = cursor.getColumnIndex(NotlarEntry.COLUMN_KATEGORI_ID);
+            int kategoriIdC = cursor.getColumnIndex(KategorilerEntry.COLUMN_KATEGORI);
+            //NotlarEntry.COLUMN_KATEGORI_ID
             int bitisTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_BITIS_TARIHI);
 
             while (cursor.moveToNext()) {
