@@ -44,7 +44,7 @@ public class ListeAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.liste_adapter_satir, parent, false);
 
         TextView tvElemanAdi = v.findViewById(R.id.tvElemanAdi);
-
+        tvElemanAdi.setText(kategoriModels.get(position).getKategoriAdi());
 
         return v;
     }

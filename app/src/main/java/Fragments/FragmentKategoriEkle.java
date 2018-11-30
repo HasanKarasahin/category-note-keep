@@ -1,9 +1,6 @@
 package Fragments;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,22 +8,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.hasan.category_note_keep.R;
 
 import java.util.ArrayList;
 
+import Adapter.ListeAdapter;
 import Model.KategoriModel;
-import data.DatabaseContract;
-import data.DatabaseProvider;
 import data.DatabaseResult;
 
 public class FragmentKategoriEkle extends Fragment {
 
     DatabaseResult dbResult;
+    ListView lvKategoriListesi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,7 @@ public class FragmentKategoriEkle extends Fragment {
         Button btnKategoriEkle = view.findViewById(R.id.btnKategoriEkle);
 
         dbResult = new DatabaseResult(getContext());
+        lvKategoriListesi = view.findViewById(R.id.lvKategoriListesi);
 
         btnKategoriEkle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +57,8 @@ public class FragmentKategoriEkle extends Fragment {
     }
 
     void kategoriEkle(String kategoriAdi) {
-
-
+        dbResult.setKategoriEkle(kategoriAdi);
+        kategorileriGoster();
     }
 
     void kategorileriGoster() {
@@ -76,6 +76,14 @@ public class FragmentKategoriEkle extends Fragment {
         } else {
             Toast.makeText(getActivity(), "Data Okunamadı", Toast.LENGTH_SHORT).show();
         }
+        listviewload(kategoriModelList);
+    }
+
+
+    void listviewload(ArrayList<KategoriModel> KategoriModels) {
+        //ArrayAdapter<String> adapter=new ArrayAdapter<>()
+        ListeAdapter adapter = new ListeAdapter(KategoriModels, getContext());
+        lvKategoriListesi.setAdapter(adapter);
     }
 
 
