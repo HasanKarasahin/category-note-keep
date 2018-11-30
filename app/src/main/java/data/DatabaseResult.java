@@ -40,7 +40,6 @@ public class DatabaseResult {
                 kategoriModels.add(new KategoriModel(_id, kategoriAdi));
             }
 
-
             return kategoriModels;
 
         } catch (Exception e) {
@@ -109,7 +108,6 @@ public class DatabaseResult {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         return notModels;
     }
