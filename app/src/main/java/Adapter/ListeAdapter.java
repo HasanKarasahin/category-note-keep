@@ -12,13 +12,15 @@ import com.example.hasan.category_note_keep.R;
 import java.util.ArrayList;
 
 import Model.KategoriModel;
+import Model.NotModel;
+import data.DatabaseContract;
 
 public class ListeAdapter extends BaseAdapter {
 
-    ArrayList<KategoriModel> kategoriModels;
+    ArrayList<?> kategoriModels;
     Context context;
 
-    public ListeAdapter(ArrayList<KategoriModel> kategoriModels, Context context) {
+    public ListeAdapter(ArrayList<?> kategoriModels, Context context) {
         this.kategoriModels = kategoriModels;
         this.context = context;
     }
@@ -44,7 +46,11 @@ public class ListeAdapter extends BaseAdapter {
         View v = LayoutInflater.from(context).inflate(R.layout.liste_adapter_satir, parent, false);
 
         TextView tvElemanAdi = v.findViewById(R.id.tvElemanAdi);
-        tvElemanAdi.setText(kategoriModels.get(position).getKategoriAdi());
+        if (kategoriModels.get(0).getClass() == KategoriModel.class) {
+            tvElemanAdi.setText(((KategoriModel) kategoriModels.get(position)).getKategoriAdi());
+        } else if (kategoriModels.get(0).getClass() == NotModel.class) {
+            tvElemanAdi.setText(((NotModel) kategoriModels.get(position)).getNotIcerik());
+        }
 
         return v;
     }
