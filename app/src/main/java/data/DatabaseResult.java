@@ -8,8 +8,10 @@ import android.net.Uri;
 import java.util.ArrayList;
 
 import Model.KategoriModel;
+import Model.NotModel;
 
 import data.DatabaseContract.NotlarEntry;
+import data.DatabaseContract.KategorilerEntry;
 
 public class DatabaseResult {
 
@@ -24,11 +26,11 @@ public class DatabaseResult {
         //String selection = "_id = ?";
         //String[] selectionArgs = {"1", "2", "3"};
         try {
-            Cursor cursor = context.getContentResolver().query(DatabaseContract.KategorilerEntry.CONTENT_URI, null, null, null, null);
+            Cursor cursor = context.getContentResolver().query(KategorilerEntry.CONTENT_URI, null, null, null, null);
             ArrayList<KategoriModel> kategoriModels = new ArrayList<>();
 
-            int _idC = cursor.getColumnIndex(DatabaseContract.KategorilerEntry.ID);
-            int kategoriAdiC = cursor.getColumnIndex(DatabaseContract.KategorilerEntry.COLUMN_KATEGORI);
+            int _idC = cursor.getColumnIndex(KategorilerEntry.ID);
+            int kategoriAdiC = cursor.getColumnIndex(KategorilerEntry.COLUMN_KATEGORI);
 
             while (cursor.moveToNext()) {
 
@@ -78,5 +80,36 @@ public class DatabaseResult {
             e.printStackTrace();
         }
         return uri;
+    }
+
+    public ArrayList<NotModel> getTumNotlar() {
+
+        ArrayList<NotModel> notModels = null;
+
+        try {
+            Cursor cursor = context.getContentResolver().query(NotlarEntry.CONTENT_URI, null, null, null, null);
+            notModels = new ArrayList<NotModel>();
+
+            int _idC = cursor.getColumnIndex(NotlarEntry.ID);
+            int notIcerikC = cursor.getColumnIndex(NotlarEntry.COLUMN_NOT_ICERIK);
+            int olusuturlmaTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_OLUSTURULMA_TARIHI);
+            int yapildiC = cursor.getColumnIndex(NotlarEntry.COLUMN_YAPILDI);
+            int kategoriIdC = cursor.getColumnIndex(NotlarEntry.COLUMN_KATEGORI_ID);
+            int bitisTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_BITIS_TARIHI);
+
+            while (cursor.moveToNext()) {
+                String _id = cursor.getString(_idC);
+                String notIcerik = cursor.getString(notIcerikC);
+                String kategoriId = cursor.getString(kategoriIdC);
+
+                notModels.add(new NotModel(_id, notIcerik, kategoriId, null, null, null));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return notModels;
     }
 }
