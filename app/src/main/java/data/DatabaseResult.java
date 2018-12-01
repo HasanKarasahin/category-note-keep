@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.widget.Switch;
 
 import java.util.ArrayList;
 
@@ -114,10 +113,11 @@ public class DatabaseResult {
     }
 
     public int setKategoriSil(String id) {
+        int etkilenen ;
+            String where = KategorilerEntry.ID + " = ?";
+            String[] selectionArgs = {id};
+            etkilenen = context.getContentResolver().delete(KategorilerEntry.CONTENT_URI, where, selectionArgs);
 
-        String where = KategorilerEntry.ID + " = ?";
-        String[] selectionArgs = {id};
-        int etkilenen = context.getContentResolver().delete(KategorilerEntry.CONTENT_URI, where, selectionArgs);
         return etkilenen;
     }
 }
