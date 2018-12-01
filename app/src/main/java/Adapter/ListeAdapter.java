@@ -62,7 +62,8 @@ public class ListeAdapter extends BaseAdapter {
 
         if (dataVar) {
             if (state) {
-                tvElemanAdi.setText(((KategoriModel) kategoriModels.get(position)).getKategoriAdi());
+                KategoriModel kategoriModel = ((KategoriModel) kategoriModels.get(position));
+                tvElemanAdi.setText(kategoriModel.get_id() + " - " + kategoriModel.getKategoriAdi());
             } else {
                 NotModel notModel = ((NotModel) kategoriModels.get(position));
                 tvElemanAdi.setText(notModel.getKategoriId() + " - " + notModel.getNotIcerik());
