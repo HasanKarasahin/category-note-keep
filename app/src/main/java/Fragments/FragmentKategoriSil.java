@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,14 +39,19 @@ public class FragmentKategoriSil extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        dbResult=new DatabaseResult(getContext());
+        dbResult = new DatabaseResult(getContext());
 
         lvKategoriler = view.findViewById(R.id.lvKategoriler);
-
         kategorileriListele();
+        lvKategoriler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                kategoriSil();
+            }
+        });
     }
 
-    void kategorileriListele() {
+    private void kategorileriListele() {
 
         ArrayList<KategoriModel> kategoriModelList = dbResult.getTumKategoriler();
 
@@ -56,9 +62,13 @@ public class FragmentKategoriSil extends Fragment {
         }
     }
 
-    void listviewload(ArrayList<KategoriModel> KategoriModels) {
+    private void listviewload(ArrayList<KategoriModel> KategoriModels) {
         ListeAdapter adapter = new ListeAdapter(KategoriModels, getContext());
         lvKategoriler.setAdapter(adapter);
+    }
+
+    private void kategoriSil() {
+        Toast.makeText(getContext(), "Tşklandi", Toast.LENGTH_SHORT).show();
     }
 
     @Override
