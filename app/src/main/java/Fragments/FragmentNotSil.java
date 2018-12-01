@@ -11,6 +11,7 @@ import com.example.hasan.category_note_keep.R;
 
 public class FragmentNotSil extends Fragment {
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
