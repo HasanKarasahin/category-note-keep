@@ -48,14 +48,16 @@ public class FragmentKategoriSil extends Fragment {
         lvKategoriler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                openAlertDialog();
+                openAlertDialog(position);
             }
         });
     }
 
+    ArrayList<KategoriModel> kategoriModelList;
+
     private void kategorileriListele() {
 
-        ArrayList<KategoriModel> kategoriModelList = dbResult.getTumKategoriler();
+        kategoriModelList = dbResult.getTumKategoriler();
 
         if (kategoriModelList != null) {
             listviewload(kategoriModelList);
@@ -69,7 +71,7 @@ public class FragmentKategoriSil extends Fragment {
         lvKategoriler.setAdapter(adapter);
     }
 
-    private void openAlertDialog() {
+    private void openAlertDialog(final int selectedPosition) {
         final CharSequence[] items = {"Sil", "İptal"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Select");
@@ -78,7 +80,7 @@ public class FragmentKategoriSil extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                    kategoriSil();
+                    kategoriSil(kategoriModelList.get(selectedPosition).get_id());
                 }
                 dialog.cancel();
             }
@@ -87,8 +89,15 @@ public class FragmentKategoriSil extends Fragment {
         alert.show();
     }
 
-    private void kategoriSil() {
-        
+    private void kategoriSil(String id) {
+        int result = dbResult.setKategoriSil(id);
+        if (result != -1) {
+            Toast.makeText(getContext(), "Kayıt Silindi ", Toast.LENGTH_SHORT).show();
+            //
+            // kategorileriListele();
+        } else {
+            Toast.makeText(getContext(), "Kayit Silinemedi", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
