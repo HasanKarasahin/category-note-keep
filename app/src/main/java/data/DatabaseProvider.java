@@ -111,12 +111,17 @@ public class DatabaseProvider extends ContentProvider {
     }
 
     private int kayitSil(Uri uri, String selection, String[] selectionArgs, String tableName) {
-        int etkilenen = db.delete(tableName, selection, selectionArgs);
-        if (etkilenen == 0) {
-            Log.e("DatabaseExp", "Delete Hatası");
-            return -1;
+        int etkilenen = -1;
+        try {
+            etkilenen = db.delete(tableName, selection, selectionArgs);
+            if (etkilenen == 0) {
+                Log.e("DatabaseExp", "Delete Hatası");
+                return -1;
+            }
+            getContext().getContentResolver().notifyChange(uri, null);
+        } catch (Exception e) {
+            etkilenen = -1;
         }
-        getContext().getContentResolver().notifyChange(uri, null);
         return etkilenen;
     }
 
