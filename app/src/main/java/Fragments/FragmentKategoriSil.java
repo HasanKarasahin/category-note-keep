@@ -93,8 +93,7 @@ public class FragmentKategoriSil extends Fragment {
         int result = dbResult.setKategoriSil(id);
         if (result != -1) {
             Toast.makeText(getContext(), "Kayıt Silindi ", Toast.LENGTH_SHORT).show();
-            //
-            // kategorileriListele();
+            kategorileriListele();
         } else {
             Toast.makeText(getContext(), "Kayit Silinemedi", Toast.LENGTH_SHORT).show();
         }
