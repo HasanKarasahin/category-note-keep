@@ -1,10 +1,12 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +48,7 @@ public class FragmentKategoriSil extends Fragment {
         lvKategoriler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                kategoriSil();
+                openAlertDialog();
             }
         });
     }
@@ -67,8 +69,26 @@ public class FragmentKategoriSil extends Fragment {
         lvKategoriler.setAdapter(adapter);
     }
 
+    private void openAlertDialog() {
+        final CharSequence[] items = {"Sil", "İptal"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Select");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    kategoriSil();
+                }
+                dialog.cancel();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
     private void kategoriSil() {
-        Toast.makeText(getContext(), "Tşklandi", Toast.LENGTH_SHORT).show();
+        
     }
 
     @Override
