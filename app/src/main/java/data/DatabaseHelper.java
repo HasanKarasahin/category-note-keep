@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //CREATE TABLE KATEGORILER(_ID INTEGER PRIMARY KEY, KATEGORILER TEXT);
 
     private static final String TABLE_KATEGORILER_CREATE = "CREATE TABLE " + KategorilerEntry.TABLE_NAME +
-            " (" + KategorilerEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KategorilerEntry.COLUMN_KATEGORI + " TEXT )";
+            " (" + KategorilerEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KategorilerEntry.COLUMN_KATEGORI + " TEXT )";
 
     //CREATE TABLE NOTLAR (_ID INTEGER PRIMARY KEY,
     //                    NOT_ICERIK TEXT,
@@ -25,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //                    KATEGORI_ID INTEGER
     //                    FOREIGN KEY(KATEGORI_ID) REFERENCES KATEGORILER(_ID);
 
-    private static final String TABLE_NOTLAR_CREATE = "CREATE TABLE " + NotlarEntry.TABLE_NAME + " (" + NotlarEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    private static final String TABLE_NOTLAR_CREATE = "CREATE TABLE " + NotlarEntry.TABLE_NAME + " (" + NotlarEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             NotlarEntry.COLUMN_NOT_ICERIK + " TEXT, " +
             NotlarEntry.COLUMN_OLUSTURULMA_TARIHI + " TEXT default CURRENT_TIMESTAMP, " +
             NotlarEntry.COLUMN_BITIS_TARIHI + " TEXT, " +
