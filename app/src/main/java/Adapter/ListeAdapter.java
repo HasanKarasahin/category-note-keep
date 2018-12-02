@@ -1,6 +1,7 @@
 package Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +14,22 @@ import java.util.ArrayList;
 
 import Model.KategoriModel;
 import Model.NotModel;
-import data.DatabaseContract;
 
 public class ListeAdapter extends BaseAdapter {
 
-    ArrayList<?> kategoriModels;
+    ArrayList<?> arrayList;
     Context context;
     boolean state;
-    boolean dataVar = false;
+    boolean dataVar;
 
-    public ListeAdapter(ArrayList<?> kategoriModels, Context context) {
-        this.kategoriModels = kategoriModels;
+    public ListeAdapter(ArrayList<?> arrayList, Context context) {
+        this.arrayList = arrayList;
         this.context = context;
 
-        if (kategoriModels.size() > 0) {
-            if (kategoriModels.get(0).getClass() == KategoriModel.class) {
+        if (arrayList.size() > 0) {
+            if (arrayList.get(0).getClass() == KategoriModel.class) {
                 state = true;
-            } else if (kategoriModels.get(0).getClass() == NotModel.class) {
+            } else if (arrayList.get(0).getClass() == NotModel.class) {
                 state = false;
             }
             dataVar = true;
@@ -40,12 +40,12 @@ public class ListeAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return kategoriModels.size();
+        return arrayList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return kategoriModels.get(position);
+        return arrayList.get(position);
     }
 
     @Override
@@ -62,11 +62,11 @@ public class ListeAdapter extends BaseAdapter {
 
         if (dataVar) {
             if (state) {
-                KategoriModel kategoriModel = ((KategoriModel) kategoriModels.get(position));
+                KategoriModel kategoriModel = ((KategoriModel) arrayList.get(position));
                 tvElemanAdi.setText(kategoriModel.get_id() + " - " + kategoriModel.getKategoriAdi());
             } else {
-                NotModel notModel = ((NotModel) kategoriModels.get(position));
-                tvElemanAdi.setText(notModel.getKategoriId() + " - " + notModel.getNotIcerik());
+                NotModel notModel = ((NotModel) arrayList.get(position));
+                tvElemanAdi.setText("id : " + notModel.getId() + " - icerik : " + notModel.getNotIcerik());
             }
         } else {
             tvElemanAdi.setText("Data Yok");
