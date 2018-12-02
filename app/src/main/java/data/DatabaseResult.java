@@ -113,11 +113,19 @@ public class DatabaseResult {
     }
 
     public int setKategoriSil(String id) {
-        int etkilenen ;
-            String where = KategorilerEntry.ID + " = ?";
-            String[] selectionArgs = {id};
-            etkilenen = context.getContentResolver().delete(KategorilerEntry.CONTENT_URI, where, selectionArgs);
+        int etkilenen;
+        String where = KategorilerEntry.ID + " = ?";
+        String[] selectionArgs = {id};
+        etkilenen = context.getContentResolver().delete(KategorilerEntry.CONTENT_URI, where, selectionArgs);
 
+        return etkilenen;
+    }
+
+    public int setNotSil(String id) {
+        int etkilenen;
+        String where = NotlarEntry.ID + " = ?";
+        String[] selectionArgs = {id};
+        etkilenen = context.getContentResolver().delete(NotlarEntry.CONTENT_URI, where, selectionArgs);
         return etkilenen;
     }
 }
