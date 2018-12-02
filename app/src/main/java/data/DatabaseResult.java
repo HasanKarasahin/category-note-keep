@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -86,25 +87,26 @@ public class DatabaseResult {
         ArrayList<NotModel> notModels = null;
 
         try {
-            Cursor cursor = context.getContentResolver().query(NotlarEntry.CONTENT_URI, null, null, null, null);
-            notModels = new ArrayList<NotModel>();
+            String[] projection = {NotlarEntry.TABLE_NAME + "." + NotlarEntry.ID, NotlarEntry.TABLE_NAME + "." + NotlarEntry.COLUMN_NOT_ICERIK, KategorilerEntry.TABLE_NAME + "." + KategorilerEntry.COLUMN_KATEGORI};
+            Cursor cursor = context.getContentResolver().query(NotlarEntry.CONTENT_URI, projection, null, null, null);
+            notModels = new ArrayList<>();
 
-            int _idC = cursor.getColumnIndex(NotlarEntry.ID);
-            int notIcerikC = cursor.getColumnIndex(NotlarEntry.COLUMN_NOT_ICERIK);
-            int olusuturlmaTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_OLUSTURULMA_TARIHI);
-            int yapildiC = cursor.getColumnIndex(NotlarEntry.COLUMN_YAPILDI);
-            int kategoriIdC = cursor.getColumnIndex(KategorilerEntry.COLUMN_KATEGORI);
+            //int _idC = cursor.getColumnIndex(NotlarEntry.TABLE_NAME + "." + NotlarEntry.ID);
+            //int notIcerikC = cursor.getColumnIndex(NotlarEntry.TABLE_NAME + "." + NotlarEntry.COLUMN_NOT_ICERIK);
+            //int olusuturlmaTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_OLUSTURULMA_TARIHI);
+            //int yapildiC = cursor.getColumnIndex(NotlarEntry.COLUMN_YAPILDI);
+            //int kategoriIdC = cursor.getColumnIndex(KategorilerEntry.TABLE_NAME + "." + KategorilerEntry.COLUMN_KATEGORI);
             //NotlarEntry.COLUMN_KATEGORI_ID
-            int bitisTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_BITIS_TARIHI);
+            //int bitisTarihiC = cursor.getColumnIndex(NotlarEntry.COLUMN_BITIS_TARIHI);
 
             while (cursor.moveToNext()) {
-                String _id = cursor.getString(_idC);
-                String notIcerik = cursor.getString(notIcerikC);
-                String kategoriId = cursor.getString(kategoriIdC);
+                String _id = cursor.getString(cursor.getColumnIndex(NotlarEntry.TABLE_NAME + "." + NotlarEntry.ID));
+                Log.e("DerinNokta", _id);
+                String notIcerik = cursor.getString(cursor.getColumnIndex(NotlarEntry.TABLE_NAME + "." + NotlarEntry.COLUMN_NOT_ICERIK));
+                String kategoriId = cursor.getString(cursor.getColumnIndex(KategorilerEntry.TABLE_NAME + "." + KategorilerEntry.COLUMN_KATEGORI));
 
                 notModels.add(new NotModel(_id, notIcerik, kategoriId, null, null, null));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

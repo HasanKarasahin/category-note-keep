@@ -63,7 +63,10 @@ public class FragmentNotSil extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                    notSil(notModels.get(selectedPosition).getId());
+
+                    Toast.makeText(getContext(), "" + notModels.get(selectedPosition).getId(), Toast.LENGTH_SHORT).show();
+
+                    //notSil(notModels.get(selectedPosition).getId());
                 }
                 dialog.cancel();
             }
@@ -73,6 +76,7 @@ public class FragmentNotSil extends Fragment {
     }
 
     private void notSil(String id) {
+        Toast.makeText(getContext(), id, Toast.LENGTH_SHORT).show();
         int result = dbResult.setNotSil(id);
         if (result != -1) {
             Toast.makeText(getContext(), "Kayıt Silindi ", Toast.LENGTH_SHORT).show();

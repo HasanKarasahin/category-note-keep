@@ -68,8 +68,7 @@ public class FragmentNotEkle extends Fragment {
     private void notEkle(String notIcerik, String kategoriId) {
         Uri uri = dbResult.setNotEkle(notIcerik, kategoriId);
         if (uri != null) {
-
-            Toast.makeText(getContext(), "Not Basarıyla Eklendi", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Not Basarıyla Eklendi" + uri, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getContext(), "Not Eklenemedi", Toast.LENGTH_SHORT).show();
         }
@@ -97,7 +96,6 @@ public class FragmentNotEkle extends Fragment {
         ListeAdapter adapter = new ListeAdapter(notModels, getContext());
         lvNotListesi.setAdapter(adapter);
     }
-
 
     @Override
     public void onAttach(Context context) {

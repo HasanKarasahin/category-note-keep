@@ -27,7 +27,6 @@ public class DatabaseProvider extends ContentProvider {
         matcher.addURI(DatabaseContract.CONTENT_AUTHORITY, KategorilerEntry.TABLE_NAME, URICODE_KATEGORILER);
     }
 
-
     private SQLiteDatabase db;
     private DatabaseHelper helper;
 
@@ -42,9 +41,10 @@ public class DatabaseProvider extends ContentProvider {
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
 
-        Cursor cursor = null;
+        Cursor cursor;
         SQLiteQueryBuilder builder;
-        String tabloBirlestir = NotlarEntry.TABLE_NAME + " inner join "
+        String tabloBirlestir =
+                NotlarEntry.TABLE_NAME + " inner join "
                 + KategorilerEntry.TABLE_NAME
                 + " on " + NotlarEntry.TABLE_NAME
                 + "." + NotlarEntry.COLUMN_KATEGORI_ID
@@ -54,7 +54,7 @@ public class DatabaseProvider extends ContentProvider {
             case URICODE_NOTLAR:
                 builder = new SQLiteQueryBuilder();
                 builder.setTables(tabloBirlestir);
-                cursor = builder.query(db, projection, selection, selectionArgs, null, null, null);
+                cursor = builder.query(db, projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case URICODE_KATEGORILER:
                 cursor = db.query(KategorilerEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
