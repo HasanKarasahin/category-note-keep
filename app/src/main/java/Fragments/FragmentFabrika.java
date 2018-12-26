@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 public class FragmentFabrika implements IFragmentFabrikasi {
     @Override
     public Fragment getInstance(Enum fragmentAdi) {
-
-
         Fragment fragment;
         switch ((F_Menu_Enum) fragmentAdi) {
             case ANAEKRAN:
